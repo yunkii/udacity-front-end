@@ -121,6 +121,12 @@ h4 {
 	padding:30px;
 }
 
+@media screen and (max-width: 1280px) and (min-width: 768px) {
+h4 {
+	font-size:1rem;
+}
+}
+
 footer a {
 	color:white;
 	font-weight: bold;
@@ -132,5 +138,10 @@ footer a {
 	margin:10px;
 }
 
-.social-links li a {color:white;}
-.social-links li a:hover {color:#eee;}
+.social-links a{
+	color:white;
+}
+
+.social-links a:hover {
+	color:#eee;
+}
