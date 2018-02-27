@@ -46,7 +46,7 @@ html, body {
 }
 
 header, footer {
-	background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%); 
+	background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%); /* Inspired by Udacity Homepage */
 	text-align: center;
 	padding:40px;
 	color:white;
