@@ -12,7 +12,8 @@ https://davidwalsh.name/css-flip
 */
 
 body {
-	background-color: #1abc9c;
+	/*background-color: #1abc9c;*/
+	background-color: #eee;
 	font-family: georgia;
 }
 
@@ -20,7 +21,7 @@ body {
 .container {
 	perspective: 1500px;
 	width:340px;
-  	margin:10vh auto;
+  	margin:20vh auto;
 }
 
 .container:hover .card{
@@ -40,7 +41,7 @@ body {
   	padding:10px 20px;
 	width:300px;
   	height:580px;
-	border-radius: 6px;
+	border-radius: 20px;
 	box-shadow: 0 6px 16px rgba(0,0,0,0.15);
 	background-color: white;
 	cursor: pointer;
@@ -73,7 +74,7 @@ h3 {
 
 img {
 	margin-bottom:10px;
-	border-radius: 6px
+	border-radius: 20px
 }
 
 span {
@@ -83,7 +84,7 @@ span {
 .description {
 	border:1px solid #1abc9c;
 	padding:0 10px;
-	border-radius: 6px;
+	border-radius: 20px;
 	margin-bottom: 10px
 
 }
