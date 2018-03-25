@@ -159,9 +159,12 @@ footer a:hover {
 
 /*
 ==========
-  Media Queries
+  Timer
 ==========
 */
 
+.timer {
+    margin:0 20px;
+}
 
 

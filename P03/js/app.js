@@ -57,9 +57,10 @@ function startGame() {
    numStars = 3;
    numMatch = 0;
 
-
+  setInterval(timer, 1000);
    moveCount();
    starCount();
+   matchCount();
 
    for(i=0;i<numCards;i++) {
         $('.deck').append($('<li class="card"><img src="img/animal/' + possibleCards[i] + '.svg"/></li>'))
@@ -98,6 +99,7 @@ function startGame() {
 
     moveCount();
     starCount();
+    matchCount();
 
 
     if(numMatch === totalPairs ) {
@@ -135,6 +137,38 @@ function unmatch() {
 };
 
 
+// ========
+// Timer
+// ========
+
+
+
+// function seconds() {
+//     setInterval(timer, 1000);
+
+// }
+
+
+
+function timer() {
+let seconds = 0;
+let minutes = 0;
+seconds++;
+
+if(seconds === 60) {
+  seconds = 0;
+  minutes ++;
+}
+$( ".timer-seconds" ).text(seconds);
+$( ".timer-minutes" ).text(minutes);
+
+}
+
+
+// function seconds() {
+// seconds++;
+//   $( ".timer-seconds" ).text(seconds);
+// };
 
 // ========
 // Restart
@@ -174,12 +208,20 @@ function moveCount(){
 
 
 // ========
+// MatchCount
+// ========
+
+function matchCount(){
+  $( ".matches" ).text(numMatch);
+}
+
+// ========
 // Congrats Message
 // ========
 
 
 function congrats() {
-    alert('you win');
+   $('.congrats').slideDown();
 };
 
 
