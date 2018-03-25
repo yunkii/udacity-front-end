@@ -61,19 +61,20 @@ function startGame() {
 
 
   $(".card:not(.match, .open)").click(function() {
-    $(this).addClass('show open');
+    $(this).addClass('show open animated flipInY');
     var currentCard = $(this).context.innerHTML;
     opened.push(currentCard);
 
     // when click the second card of the pair
     if(opened.length > 1) {
       if(currentCard === opened[0]) {
-        $('.open').addClass('match animated wobble');
+        $('.open').addClass('match animated flip');
+
             opened = [];
 
       }else {
-        $('.open:not(.match').addClass('unmatch animated shake');
-        $('.unmatch').delay(600).queue(function(){$('.unmatch').removeClass('open show animated unmatch animated shake')});
+        $('.open:not(.match').addClass('unmatch animated flipOut');
+        $('.unmatch').delay(600).queue(function(){$('.unmatch').removeClass('open show animated unmatch animated flipOut')});
             opened = [];
       }
     }
