@@ -1,48 +1,33 @@
-/*
- * Create a list that holds all of your cards
- */
-
-
-// let possibleCards = ['diamond', 'diamond', 'paper-plane-o', 'paper-plane-o','anchor','anchor',
-// 'bolt','bolt','cube','cube','leaf','leaf','bicycle','bicycle','bomb','bomb'];
-// icons from font-awesome
-
+// ========
+// List of possible cards
+// ========
 
 let possibleCards = ['beehive', 'beehive', 'beetle', 'beetle','bird','bird',
 'horse','horse','panda','panda','pelican','pelican','penguin','penguin','seals','seals'];
 
-// Global variables
+// ========
+// Global Variables
+// ========
 
-const restart = $('.restart');
-const scorePanel = $('.score-panel');
 const numCards = possibleCards.length;
+const totalPairs = numCards /2;
 let opened = [];
 let numStars = 3;
 let numMoves = 0;
 let numMatch = 0;
 
-const showStar = ['<li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li>', // 0 star
-                  '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li>',  // 1 star
+const showStar = ['<li><i class="fa fa-star"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li>',  // 1 star
                   '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star-o"></i></li>',  // 2 stars
                   '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>' // 3 stars
                  ];
 
 
 
+// ========
+// Given Shuffle function
+// source: http://stackoverflow.com/a/2450976
+// ========
 
-
-
-
-
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-
-
-// Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -57,11 +42,14 @@ function shuffle(array) {
     return array;
 }
 
-
+// ========
+// Star Game
+// :: clear deck, init variables, shuffle cards and put them back on
+// ========
 
 
 function startGame() {
-  // Clear deck, shuffle the cards and put the cards
+
    $('.deck').empty();
    shuffle(possibleCards);
    opened = [];
@@ -70,13 +58,12 @@ function startGame() {
    numMatch = 0;
 
 
-   $( ".moves" ).text(numMoves);
+   moveCount();
+   starCount();
 
    for(i=0;i<numCards;i++) {
         $('.deck').append($('<li class="card"><img src="img/animal/' + possibleCards[i] + '.svg"/></li>'))
    };
-
-   $('.stars').empty().append(showStar[numStars]);
 
 
 /*
@@ -93,48 +80,74 @@ function startGame() {
 
  $(".card:not(.match,.show)").click(function() {
 
-    $(this).addClass('show');
+    $(this).addClass('show animated flipInY');
+
     let currentCard = $(this).context.innerHTML;
     opened.push(currentCard);
 
-    // when click the second card of the pair
+
+    // verified match / unmatch
+
     if(opened.length > 1) {
       if(currentCard === opened[0]) {
-        numMoves++;
-        numMatch++;
-        opened = [];
-        $('.show').addClass('match animated flip');
-        $('.show').removeClass('');
+        match();
       }else {
-        numMoves++;
-        opened = [];
-        $('.show:not(.match').removeClass().addClass('card show unmatch animated shake');
-        $('.unmatch').delay(600).queue(function(){$('.unmatch').removeClass().addClass('card')});
+        unmatch();
       }
-    }
+    };
 
-    $( ".moves" ).text(numMoves);
+    moveCount();
     starCount();
+
+
+    if(numMatch === totalPairs ) {
+      congrats();
+    }
 
 
   });
 
-
-
 };
-
-
 
 
 startGame();
 
+
+// ========
+// Match + Unmatch
+// ========
+
+function match() {
+  numMoves++;
+  numMatch++;
+  opened = [];
+  $('.show').addClass('match animated flip');
+  $('.show').removeClass('.show');
+
+};
+
+
+function unmatch() {
+  numMoves++;
+  opened = [];
+  $('.show:not(.match)').removeClass().addClass('card show unmatch animated shake');
+  $('.unmatch:not(.match)').delay(600).queue(function(){$('.unmatch:not(.match)').removeClass().addClass('card')});
+};
+
+
+
+// ========
 // Restart
-restart.click(function() {
+// ========
+
+$('.restart').click(function() {
     startGame();
 });
 
 
-
+// ========
+// StarCount
+// ========
 
 function starCount() {
 
@@ -146,10 +159,27 @@ function starCount() {
       numStars = 1;
     };
 
-   $('.stars').empty().append(showStar[numStars]);
-  };
+   $('.stars').empty().append(showStar[numStars-1]);
+};
 
 
+// ========
+// MoveCount
+// ========
 
+
+function moveCount(){
+  $( ".moves" ).text(numMoves);
+}
+
+
+// ========
+// Congrats Message
+// ========
+
+
+function congrats() {
+    alert('you win');
+};
 
 
