@@ -14,7 +14,6 @@ let possibleCards = ['beehive', 'beehive', 'beetle', 'beetle','bird','bird',
 // Global variables
 
 const restart = $('.restart');
-const moves = $('.moves');
 const scorePanel = $('.score-panel');
 const numCards = possibleCards.length;
 let opened = [];
@@ -24,17 +23,16 @@ let numMoves = 0;
 
 
 
+// if(numMoves < 10) {
+//   numStar = 3;
 
-if(numMoves < 10) {
-  numStar = 3;
+// }
+// else if (numMoves > 30) {
+//   numStar = 1;
 
-}
-else if (numMoves > 30) {
-  numStar = 1;
-
-}else {
-  numStar = 2;
-}
+// }else {
+//   numStar = 2;
+// }
 
 
 
@@ -62,10 +60,6 @@ function shuffle(array) {
 }
 
 
-// Restart
-restart.click(function() {
-    startGame();
-});
 
 
 function startGame() {
@@ -74,7 +68,8 @@ function startGame() {
    shuffle(possibleCards);
    opened = [];
    numMoves = 0;
-   numStars = 3;
+   numStars = 0;
+   $( ".moves" ).text(numMoves);
 
    for(i=0;i<numCards;i++) {
         $('.deck').append($('<li class="card"><img src="img/animal/' + possibleCards[i] + '.svg"/></li>'))
@@ -94,36 +89,46 @@ function startGame() {
  */
 
 
+ $(".card:not(.match,.show)").click(function() {
 
-
-
-  $(".card:not(.match, .open)").click(function() {
-    $(this).addClass('show open animated flipInY');
-    var currentCard = $(this).context.innerHTML;
+    $(this).addClass('show open');
+    let currentCard = $(this).context.innerHTML;
     opened.push(currentCard);
 
     // when click the second card of the pair
     if(opened.length > 1) {
       if(currentCard === opened[0]) {
-        $('.open').addClass('match animated flip');
-          opened = [];
-          numMoves++;
+        numMoves++;
+        opened = [];
+        $('.show').addClass('match animated flip');
 
       }else {
-        $('.open:not(.match').addClass('unmatch animated flipOut');
-        $('.unmatch').delay(600).queue(function(){$('.unmatch').removeClass('show open animated unmatch flipOut flipInY')});
-          opened = [];
-          numMoves++;
+        numMoves++;
+        opened = [];
+        $('.show:not(.match').removeClass().addClass('card show unmatch animated shake');
+        $('.unmatch').delay(600).queue(function(){$('.unmatch').removeClass().addClass('card')});
       }
     }
 
+    $( ".moves" ).text(numMoves);
 
   });
 
 
+
 };
 
+
+
+
 startGame();
+
+// Restart
+restart.click(function() {
+    startGame();
+});
+
+
 
 
 

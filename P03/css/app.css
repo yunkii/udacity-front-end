@@ -17,7 +17,6 @@ body {
 }
 
 body {
-    /*background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
     background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
     font-family: 'Montserrat', sans-serif;
 }
@@ -75,24 +74,25 @@ img {display:none;}
 .card.match img {display:block;}
 
 .deck .card.open {
-    transform: rotateY(0);
+    transform: rotateY(180);
     background: #fff;
     cursor: default;
 }
 
 .deck .card.show {
     font-size: 33px;
+    background: #fff;
 }
 
 .deck .card.match {
     cursor: default;
-    background: #F4D03F;
+    background: #1dd1a1;
     font-size: 33px;
 }
 
 .deck .card.unmatch {
     cursor: default;
-    background: red;
+    background: #ee5253;
     font-size: 33px;
 }
 
@@ -141,8 +141,22 @@ img {display:none;}
 }
 
 
+footer {
+    color:white;
+    text-align:center;
+    font-weight: normal;
+    font-size:14px;
+}
 
+footer a {
+    color:white;
+    text-decoration: none;
+    font-weight:bold;
+}
 
+footer a:hover {
+    text-decoration: underline;
+}
 /*
 ==========
   icons
