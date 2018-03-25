@@ -49,7 +49,6 @@ function shuffle(array) {
 
 
 function startGame() {
-
    $('.deck').empty();
    shuffle(possibleCards);
    opened = [];
@@ -101,7 +100,6 @@ function startGame() {
     starCount();
     matchCount();
 
-
     if(numMatch === totalPairs ) {
       congrats();
     }
@@ -133,7 +131,7 @@ function unmatch() {
   numMoves++;
   opened = [];
   $('.show:not(.match)').removeClass().addClass('card show unmatch animated shake');
-  $('.unmatch:not(.match)').delay(600).queue(function(){$('.unmatch:not(.match)').removeClass().addClass('card')});
+  $('.unmatch').delay(600).queue(function(){$('.unmatch').removeClass().addClass('animated flipInY card')});
 };
 
 
@@ -221,7 +219,7 @@ function matchCount(){
 
 
 function congrats() {
-   $('.congrats').slideDown();
+  alert('You Win')
 };
 
 

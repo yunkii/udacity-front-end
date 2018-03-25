@@ -130,8 +130,15 @@ img {display:none;}
   Pop-up Win
 ==========
 */
-.popup-congrats {
+
+.congrats {
+    position:relative;
+    margin:auto;
+}
+.overlay {
     position:absolute;
+    top:0;
+    left:0;
     width:100vw;
     height:100vh;
     background:white;
