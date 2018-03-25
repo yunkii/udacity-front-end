@@ -18,6 +18,25 @@ const moves = $('.moves');
 const scorePanel = $('.score-panel');
 const numCards = possibleCards.length;
 let opened = [];
+let numStars = 3;
+let numMoves = 0;
+
+
+
+
+
+if(numMoves < 10) {
+  numStar = 3;
+
+}
+else if (numMoves > 30) {
+  numStar = 1;
+
+}else {
+  numStar = 2;
+}
+
+
 
 /*
  * Display the cards on the page
@@ -54,38 +73,16 @@ function startGame() {
    $('.deck').empty();
    shuffle(possibleCards);
    opened = [];
+   numMoves = 0;
+   
    for(i=0;i<numCards;i++) {
         $('.deck').append($('<li class="card"><img src="img/animal/' + possibleCards[i] + '.svg"/></li>'))
    };
 
+   for(i=0;i<numStars;i++) {
+        $('.stars').append($('<li><i class="fa fa-star"></i></li>'));
+   };
 
-
-  $(".card:not(.match, .open)").click(function() {
-    $(this).addClass('show open animated flipInY');
-    var currentCard = $(this).context.innerHTML;
-    opened.push(currentCard);
-
-    // when click the second card of the pair
-    if(opened.length > 1) {
-      if(currentCard === opened[0]) {
-        $('.open').addClass('match animated flip');
-
-            opened = [];
-
-      }else {
-        $('.open:not(.match').addClass('unmatch animated flipOut');
-        $('.unmatch').delay(600).queue(function(){$('.unmatch').removeClass('open show animated unmatch animated flipOut')});
-            opened = [];
-      }
-    }
-
-
-  });
-
-
-};
-
-startGame();
 
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -99,22 +96,36 @@ startGame();
  */
 
 
-function match() {
-    firstCard.addClass("match");
-    secondCard.addClass("match");
-    firstCard.removeClass("show open");
-    secondCard.removeClass("show open");  
-    opened = [];
-};
 
 
-function unMatch() {
-    firstCard.addClass("unmatch");
-    secondCard.addClass("unmatch");
-    firstCard.removeClass("show open");
-    secondCard.removeClass("show open");  
-    opened = [];
+
+  $(".card:not(.match, .open)").click(function() {
+    $(this).addClass('show open animated flipInY');
+    var currentCard = $(this).context.innerHTML;
+    opened.push(currentCard);
+
+    // when click the second card of the pair
+    if(opened.length > 1) {
+      if(currentCard === opened[0]) {
+        $('.open').addClass('match animated flip');
+          opened = [];
+          numMoves++;
+
+      }else {
+        $('.open:not(.match').addClass('unmatch animated flipOut');
+        $('.unmatch').delay(600).queue(function(){$('.unmatch').removeClass('show open animated unmatch flipOut flipInY')});
+          opened = [];
+          numMoves++;
+      }
+    }
+
+
+  });
+
+
 };
+
+startGame();
 
 
 
