@@ -19,20 +19,18 @@ const numCards = possibleCards.length;
 let opened = [];
 let numStars = 3;
 let numMoves = 0;
+let numMatch = 0;
+
+const showStar = ['<li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li>', // 0 star
+                  '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li>',  // 1 star
+                  '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star-o"></i></li>',  // 2 stars
+                  '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>' // 3 stars
+                 ];
 
 
 
 
-// if(numMoves < 10) {
-//   numStar = 3;
 
-// }
-// else if (numMoves > 30) {
-//   numStar = 1;
-
-// }else {
-//   numStar = 2;
-// }
 
 
 
@@ -68,13 +66,17 @@ function startGame() {
    shuffle(possibleCards);
    opened = [];
    numMoves = 0;
-   numStars = 0;
+   numStars = 3;
+   numMatch = 0;
+
+
    $( ".moves" ).text(numMoves);
 
    for(i=0;i<numCards;i++) {
         $('.deck').append($('<li class="card"><img src="img/animal/' + possibleCards[i] + '.svg"/></li>'))
    };
 
+   $('.stars').empty().append(showStar[numStars]);
 
 
 /*
@@ -91,7 +93,7 @@ function startGame() {
 
  $(".card:not(.match,.show)").click(function() {
 
-    $(this).addClass('show open');
+    $(this).addClass('show');
     let currentCard = $(this).context.innerHTML;
     opened.push(currentCard);
 
@@ -99,9 +101,10 @@ function startGame() {
     if(opened.length > 1) {
       if(currentCard === opened[0]) {
         numMoves++;
+        numMatch++;
         opened = [];
         $('.show').addClass('match animated flip');
-
+        $('.show').removeClass('');
       }else {
         numMoves++;
         opened = [];
@@ -111,6 +114,8 @@ function startGame() {
     }
 
     $( ".moves" ).text(numMoves);
+    starCount();
+
 
   });
 
@@ -129,6 +134,20 @@ restart.click(function() {
 });
 
 
+
+
+function starCount() {
+
+  if(numMoves < 10) {
+      numStars = 3;
+    }else if (numMoves >= 10 && numMoves < 15) {
+      numStars = 2;
+    }else {
+      numStars = 1;
+    };
+
+   $('.stars').empty().append(showStar[numStars]);
+  };
 
 
 
