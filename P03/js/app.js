@@ -74,14 +74,12 @@ function startGame() {
    shuffle(possibleCards);
    opened = [];
    numMoves = 0;
-   
+   numStars = 3;
+
    for(i=0;i<numCards;i++) {
         $('.deck').append($('<li class="card"><img src="img/animal/' + possibleCards[i] + '.svg"/></li>'))
    };
 
-   for(i=0;i<numStars;i++) {
-        $('.stars').append($('<li><i class="fa fa-star"></i></li>'));
-   };
 
 
 /*
@@ -126,9 +124,6 @@ function startGame() {
 };
 
 startGame();
-
-
-
 
 
 
