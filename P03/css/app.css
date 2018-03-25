@@ -71,7 +71,7 @@ h1 {
 
 img {display:none;}
 .card.show img {display:block;}
-.card.open img {display:block;}
+/*.card.open img {display:block;}*/
 .card.match img {display:block;}
 
 .deck .card.open {
@@ -87,6 +87,12 @@ img {display:none;}
 .deck .card.match {
     cursor: default;
     background: #F4D03F;
+    font-size: 33px;
+}
+
+.deck .card.unmatch {
+    cursor: default;
+    background: red;
     font-size: 33px;
 }
 

@@ -16,11 +16,8 @@ let possibleCards = ['beehive', 'beehive', 'beetle', 'beetle','bird','bird',
 const restart = $('.restart');
 const moves = $('.moves');
 const scorePanel = $('.score-panel');
-const deck = $('.deck');
 const numCards = possibleCards.length;
 let opened = [];
-let firstCard = opened[0];
-let secondCard = opened[1];
 
 /*
  * Display the cards on the page
@@ -54,16 +51,37 @@ restart.click(function() {
 
 function startGame() {
   // Clear deck, shuffle the cards and put the cards
-   deck.empty();
+   $('.deck').empty();
    shuffle(possibleCards);
-  
+   opened = [];
    for(i=0;i<numCards;i++) {
-        deck.append($('<li class="card"><img src="img/animal/' + possibleCards[i] + '.svg"/></li>'))
-        // deck.append($('<li class="card"><i class="fa fa-' + possibleCards[i] + '"></i></li>'))
+        $('.deck').append($('<li class="card"><img src="img/animal/' + possibleCards[i] + '.svg"/></li>'))
    };
-  $(".card").click(function() { 
-    $(this).addClass("open show animated tada")
+
+
+
+  $(".card:not(.match, .open)").click(function() {
+    $(this).addClass('show open');
+    var currentCard = $(this).context.innerHTML;
+    opened.push(currentCard);
+
+    // when click the second card of the pair
+    if(opened.length > 1) {
+      if(currentCard === opened[0]) {
+        $('.open').addClass('match animated wobble');
+            opened = [];
+
+      }else {
+        $('.open:not(.match').addClass('unmatch animated shake');
+        $('.unmatch').delay(600).queue(function(){$('.unmatch').removeClass('open show animated unmatch animated shake')});
+            opened = [];
+      }
+    }
+
+
   });
+
+
 };
 
 startGame();
@@ -78,7 +96,6 @@ startGame();
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-
 
 
 function match() {
@@ -98,15 +115,6 @@ function unMatch() {
     opened = [];
 };
 
-
-
-if(firstCard === secondCard) {
-  match();
-}
-
-if(firstCard !== secondCard) {
-  unMatch();
-}
 
 
 
