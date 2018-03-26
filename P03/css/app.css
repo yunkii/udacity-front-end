@@ -215,7 +215,7 @@ footer a:hover {
 */
 
 .timer {
-    margin:0 20px;
+    margin:0px;
 }
 
 
@@ -233,6 +233,7 @@ footer a:hover {
 
 @media screen and (min-width: 500px) and (max-width: 750px) {
 
+.score-panel {width:480px;}
 .deck {
     width: 400px;
     min-height: 420px;
@@ -256,10 +257,10 @@ footer a:hover {
 
 @media screen and (max-width: 500px)  {
 
-
 h1 {
     font-size:2rem;
 }
+.score-panel {width:280px;}
 .deck {
     width: 280px;
     min-height: 300px;
@@ -277,7 +278,13 @@ h1 {
     width:40px;
 }
 
+.animal-title img{
+    width:40px;
+}
+
 .overlay-content img {
     width:200px;
 }
+
+
 }
