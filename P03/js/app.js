@@ -3,7 +3,7 @@
 // ============================================
 
 
-let baseCards = ['beehive', 'koala', 'bird', 'tiger','panda','pelican','penguin','seals'];
+let baseCards = ['beehive', 'koala', 'bird', 'tiger','panda','pelican','penguin','walrus'];
 
 let possibleCards = baseCards.concat(baseCards); // duplicate array items to make pairs
 
@@ -242,8 +242,8 @@ $('.restart').click(function() {
 // ============================================
 
 
-const finishImg = ['seals', 'penguin','tiger'];
-const finishMsg = ['Oh man... even a seal can do better','Good job, pal! Well done','Geez, That\'s amazing!'];
+const finishImg = ['walrus', 'penguin','tiger'];
+const finishMsg = ['Oh man... even a walrus can do better','Good job, pal! Well done','Geez, That\'s amazing!'];
 
 
 function congrats() {
