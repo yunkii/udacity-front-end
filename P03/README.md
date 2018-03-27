@@ -1,18 +1,29 @@
 # Memory Game Project
-
-## About the game 
+![Memory game](https://i.imgur.com/b1EWyPj.png)
+## Table of Contents
+* Project Purpose
+* How to start
+* Dependencies
+* Credit 
+## Project Purpose:
 
 This game is a project for Front-end Developer Nanodegree at Udacity (Google Scholarship Program)
 
-Using html, CSS and jQuery.
+The purpose is to demostrate the knowledge of html, CSS and Javascript
 
-You can play it [here] (https://yunkii.github.io/udacity-front-end/P03/index.html).
+
+## How to start 
+
+You can play it [here](https://yunkii.github.io/udacity-front-end/P03/index.html).
+or you can clone it to your machine and open `index.html`
 
 ## Dependencies
 
-This game is using [jQuery 1.5.1] (http://jquery.com/) and [Animated CSS] (https://daneden.github.io/animate.css/).
+This game is using [jQuery 1.5.1](http://jquery.com/) and [Animated CSS](https://daneden.github.io/animate.css/).
 
 
 ## Credit
 
-This game is code by Yunki and the cute animal icons are from [Flaticons] (https://www.flaticon.com/).
+Images : cute icons are from [Flaticons](https://www.flaticon.com/).
+
+JS functions : [The shuffle function](http://stackoverflow.com/a/2450976) ,  [Stopwatch](https://jsfiddle.net/Daniel_Hug/pvk6p/)
