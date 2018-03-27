@@ -1,10 +1,10 @@
 # Memory Game Project
 ![Memory game](https://i.imgur.com/b1EWyPj.png)
 ## Table of Contents
-* Project Purpose
-* How to start
-* Dependencies
-* Credit 
+* [Project Purpose](#project-purpose)
+* [How to start](#how-to-start)
+* [Dependencies](#dependencies)
+* [Credit](#credit)
 ## Project Purpose:
 
 This game is a project for Front-end Developer Nanodegree at Udacity (Google Scholarship Program)
@@ -16,6 +16,11 @@ The purpose is to demostrate the knowledge of html, CSS and Javascript
 
 You can play it [here](https://yunkii.github.io/udacity-front-end/P03/index.html).
 or you can clone it to your machine and open `index.html`
+
+
+## Score
+
+This game is using 3-star rating system. Depends on the result, different messages will be given.
 
 ## Dependencies
 
