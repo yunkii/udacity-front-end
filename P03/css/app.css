@@ -27,11 +27,17 @@ body {
     flex-direction: column;
 }
 
-h1 {
+.title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     color:white;
     font-size:3rem;
+}
+
+.title img {
+    width:50px;
+    margin:0 10px;
+    vertical-align: text-top;
 }
 
 /*
@@ -95,15 +101,18 @@ h1 {
 }
 
 .card img {width:100px;}
+
+
 /*
  * Styles for the Score Panel
  */
 
 .score-panel {
     text-align: left;
-    width: 345px;
-    margin-bottom: 10px;
+    width: 660px;
+    margin-bottom:20px;
     color:white;
+    padding:0 10px;
 }
 
 .score-panel .stars {
@@ -124,6 +133,8 @@ h1 {
 }
 
 
+.score-panel .timer {
+    padding-left:10px;}
 
 
 
@@ -145,6 +156,7 @@ h1 {
     background-color: rgba(230,230,230, 0.95);
     overflow-x: hidden;
     transition: 0.5s;
+    display:none;
 }
 
 .overlay-content {
@@ -208,15 +220,6 @@ footer a:hover {
 }
 
 
-/*
-==========
-  Timer
-==========
-*/
-
-.timer {
-    margin:0px;
-}
 
 
 
@@ -233,7 +236,16 @@ footer a:hover {
 
 @media screen and (min-width: 500px) and (max-width: 750px) {
 
-.score-panel {width:480px;}
+.title {
+    font-size:2.2rem;
+}
+
+.score-panel {width:400px;}
+
+.score-panel .timer {
+    padding-left:70px;
+}
+
 .deck {
     width: 400px;
     min-height: 420px;
@@ -250,6 +262,9 @@ footer a:hover {
     width:60px;
 }
 
+.overlay-content {
+    top:10%;
+}
 
 }
 
@@ -257,16 +272,25 @@ footer a:hover {
 
 @media screen and (max-width: 500px)  {
 
-h1 {
-    font-size:2rem;
+.title {
+    font-size:1.6rem;
 }
+
+.title img{
+    width:35px;
+}
+
 .score-panel {width:280px;}
+
+.score-panel .timer {
+    padding-left:10px;
+}
+
 .deck {
     width: 280px;
     min-height: 300px;
     background-color: #ccc;
     padding: 15px;
-    margin-top:30px;
 }
 
 .deck .card {
@@ -278,13 +302,12 @@ h1 {
     width:40px;
 }
 
-.animal-title img{
-    width:40px;
-}
 
 .overlay-content img {
     width:200px;
 }
 
-
+.overlay-content {
+    top:5%;
+}
 }

@@ -1,20 +1,18 @@
 # Memory Game Project
 
-## Table of Contents
+## About the game 
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+This game is a project for Front-end Developer Nanodegree at Udacity (Google Scholarship Program)
 
-## Instructions
+Using html, CSS and jQuery.
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+You can play it [here] (https://yunkii.github.io/udacity-front-end/P03/index.html).
 
-To get started, open `js/app.js` and start building out the app's functionality
+## Dependencies
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+This game is using [jQuery 1.5.1] (http://jquery.com/) and [Animated CSS] (https://daneden.github.io/animate.css/).
 
-## Contributing
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+## Credit
 
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+This game is code by Yunki and the cute animal icons are from [Flaticons] (https://www.flaticon.com/).

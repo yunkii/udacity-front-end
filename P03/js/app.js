@@ -5,24 +5,34 @@
 
 let baseCards = ['beehive', 'koala', 'bird', 'tiger','panda','pelican','penguin','seals'];
 
-let possibleCards = baseCards.concat(baseCards);
+let possibleCards = baseCards.concat(baseCards); // duplicate array items to make pairs
+
+
 
 // ============================================
 // Global Variables
 // ============================================
 
 const numCards = possibleCards.length;
-const totalPairs = numCards /2;
+const maxMatch = baseCards.length; // Maximum Pairs
 let opened = [];
 let numStars = 3;
-let numMoves = 0;
 let numMatch = 0;
+let numMoves = 0;
+
+
+// Timers 
+
+let seconds = 0;
+let minutes = 0;
+let t;
+
+
 
 const showStar = ['<li><i class="fa fa-star"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li>',  // 1 star
                   '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star-o"></i></li>',  // 2 stars
                   '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>' // 3 stars
                  ];
-
 
 
 // ============================================
@@ -46,25 +56,23 @@ function shuffle(array) {
 
 // ============================================
 // Init the Game
-// :: clear deck, init variables, shuffle cards and put them back on
+// Clear deck, init variables, shuffle cards and put them back on
 // ============================================
 
 
 function initGame() {
    $('.overlay').hide();
-    // congrats();
    $('.deck').empty();
    shuffle(possibleCards);
    opened = [];
-   numMoves = 0;
    numStars = 3;
+   numMoves = 0;
    numMatch = 0;
-   setInterval(timer, 1000);
-   moveCount();
-   starCount();
-   matchCount();
-   
-   // $('.animal-title').empty().append($('<img src="img/animal/'+possibleCards[10]+'.svg" alt="" width="70">'));
+   resetTimer();
+   runTimer();
+   printStars();
+   printMoves();
+
 
    for(i=0;i<numCards;i++) {
         $('.deck').append($('<li class="card"><img src="img/animal/' + possibleCards[i] + '.svg"/></li>'));
@@ -72,10 +80,14 @@ function initGame() {
 
 
 
-
-
 // ============================================
 // Set up event listener
+// 1. Click a card,  if it's already shown, quit function
+// 2. If it's not shown, show the card, add it to opened array. 
+// 3. If there's already an item in the opened array, check if it's match. 
+// 4. run match or unmatch function, clear opened array for the next match check.
+// 5. Calculate the stars for each move.
+// 6. If reach maximum pairs, end the game, show congrats message
 // ============================================
 
   $(".card" ).click(function() {
@@ -97,15 +109,15 @@ function initGame() {
         unmatch();
       }
     };
+    
+    starCount(); 
+    printMoves();
 
-    moveCount();
-    starCount();
-    matchCount();
 
-    if(numMatch === totalPairs ) {
+    if(numMatch === maxMatch ) {
+      stopTimer();
       congrats();
     }
-
 
   });
 
@@ -140,8 +152,41 @@ function unmatch() {
 };
 
 
+
+
+// ============================================
+// Calculate Stars by the moves and print it
+// ============================================
+
+function starCount() {
+
+  if(numMoves < 15) {
+      numStars = 3;
+    }else if (numMoves >= 15 && numMoves < 30) {
+      numStars = 2;
+    }else {
+      numStars = 1;
+    };
+
+    printStars();
+};
+
+
+// print "stars", "moves", "matches" to the page
+
+function printStars() {
+     $('.stars').empty().append(showStar[numStars-1]);
+}
+
+
+function printMoves(){
+  $( ".moves" ).text(numMoves);
+}
+
+
 // ============================================
 // Timer
+// ref: https://jsfiddle.net/Daniel_Hug/pvk6p/
 // ============================================
 
 
@@ -149,62 +194,47 @@ function twoDigits(number) {
        return (number < 10 ? '0' : '') + number;
 }
 
-  let seconds = 0;
-  let minutes = 0;
 
 function timer() {
-      seconds ++;
-      
-      // if(seconds = 60) {
-      //   seconds = 0;
-      //   minutes ++;
-      // }
+    seconds++;
+    if (seconds >= 60) {
+        seconds = 0;
+        minutes++;
+    }
+  
+    $( ".timer-seconds" ).text(twoDigits(seconds));
+    $( ".timer-minutes" ).text(minutes);
 
-      $( ".timer-seconds" ).text(twoDigits(seconds));
+    runTimer();
 }
 
+
+function runTimer() {
+  t = setTimeout(timer, 1000);
+}
+
+function resetTimer() {
+    stopTimer();
+    seconds = 0; minutes = 0;
+
+    $( ".timer-seconds" ).text(twoDigits(seconds));
+    $( ".timer-minutes" ).text(minutes);
+
+}
+
+function stopTimer() {
+  clearTimeout(t);
+}
 
 
 // ============================================
 // Restart
 // ============================================
 
+
 $('.restart').click(function() {
     initGame();
 });
-
-
-// ============================================
-// StarCount
-// ============================================
-
-function starCount() {
-
-  if(numMoves < 20) {
-      numStars = 3;
-    }else if (numMoves >= 20 && numMoves < 25) {
-      numStars = 2;
-    }else {
-      numStars = 1;
-    };
-
-   $('.stars').empty().append(showStar[numStars-1]);
-};
-
-
-
-//   MoveCount
-
-function moveCount(){
-  $( ".moves" ).text(numMoves);
-}
-
-
-//   MatchCount
-
-function matchCount(){
-  $( ".matches" ).text(numMatch);
-}
 
 
 // ============================================
@@ -213,14 +243,15 @@ function matchCount(){
 
 
 const finishImg = ['seals', 'penguin','tiger'];
-const finishMsg = ['Oh man... even a seal can do better','Good Job, Pal! Well done','Geez, That\'s amazing!'];
+const finishMsg = ['Oh man... even a seal can do better','Good job, pal! Well done','Geez, That\'s amazing!'];
 
 
 function congrats() {
-
+  stopTimer();
   setTimeout(function(){
-      $('.msg').empty().prepend($('<h2>' + finishMsg[numStars-1] + '</h2>'));
-      $('.msg').prepend($('<img src="img/animal/' + finishImg[numStars-1] + '.svg" alt="" width="300">'));
+      // switch messages and images base on number of stars
+      $('.switch-msg').empty().prepend($('<h2>' + finishMsg[numStars-1] + '</h2>'));
+      $('.switch-msg').prepend($('<img src="img/animal/' + finishImg[numStars-1] + '.svg" alt="" width="300">'));
       $('.overlay-content').addClass('animated bounceIn')
   }, 100);
 
@@ -229,4 +260,7 @@ function congrats() {
   }, 300);
 
 };
+
+
+
 
