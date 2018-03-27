@@ -162,7 +162,7 @@ function starCount() {
 
   if(numMoves < 15) {
       numStars = 3;
-    }else if (numMoves >= 15 && numMoves < 30) {
+    }else if (numMoves >= 15 && numMoves < 25) {
       numStars = 2;
     }else {
       numStars = 1;
