@@ -160,9 +160,9 @@ function unmatch() {
 
 function starCount() {
 
-  if(numMoves < 15) {
+  if(numMoves < 16) {
       numStars = 3;
-    }else if (numMoves >= 15 && numMoves < 25) {
+    }else if (numMoves >= 16 && numMoves < 25) {
       numStars = 2;
     }else {
       numStars = 1;
