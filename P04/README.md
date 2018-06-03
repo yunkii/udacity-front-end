@@ -1,5 +1,5 @@
 # Arcade Game Project
-![Arcade Game](https://i.imgur.com/l2B34KV.png)
+![Arcade Game](https://i.imgur.com/Wi301OL.png)
 ## Table of Contents
 * [Project Purpose](#project-purpose)
 * [How to start](#how-to-start)
