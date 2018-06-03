@@ -32,6 +32,10 @@ function reload(){
 updateStatus();
 
 
+// ==================
+// Enemy function
+// ==================
+
 
 var Enemy = function() {
     this.sprite = 'images/enemy-bug.png';
@@ -59,6 +63,11 @@ Enemy.prototype.update = function(dt) {
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
+
+
+// ==================
+// Player function
+// ==================
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -114,9 +123,13 @@ Player.prototype.update = function(dt) {
     this.sprite = playerImages[level-1];
     }
 
+// ==================
+// Check collision
+// ==================
+
     allEnemies.forEach(function(enemy) {
-    if(self.x >= enemy.x - 25 && self.x <= enemy.x + 25) {
-        if(self.y >= enemy.y - 25 && self.y <= enemy.y + 25) {
+    if(self.x >= enemy.x - 50 && self.x <= enemy.x + 50) {
+        if(self.y >= enemy.y - 50 && self.y <= enemy.y + 50) {
             self.reset();
             lives -= 1;
             updateStatus();
@@ -142,6 +155,10 @@ Player.prototype.reset = function() {
    this.x = 200;
    this.y = 400;
 };
+
+// ==================
+// Init
+// ==================
 
 
 var enemy1 = new Enemy();
