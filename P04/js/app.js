@@ -1,14 +1,43 @@
-// Enemies our player must avoid
-var Enemy = function(x, y) {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
+// ==================
+// Global variables
+// ==================
 
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
+var score = 0;
+var level = 1;
+var lives = 3;
+var enemyY = [ 60, 150, 150 , 220, 220]
+var playerImages = ['images/char-boy.png', 'images/char-cat-girl.png', 'images/char-horn-girl.png', 'images/char-pink-girl.png', 'images/char-princess-girl.png' ]
+// var gemImages = ['images/Gem_Blue.png', 'images/Gem_Green.png', 'images/Gem_Orange.png'];
+var heartCount = ['','<img src="images/Heart.png" alt="" width="50">','<img src="images/Heart.png" alt="" width="50"><img src="images/Heart.png" alt="" width="50">','<img src="images/Heart.png" alt="" width="50"><img src="images/Heart.png" alt="" width="50"><img src="images/Heart.png" alt="" width="50">']
+
+function updateStatus() {
+    document.getElementById("lives").innerHTML = heartCount[lives];
+
+    if(lives <= 0 && level <= 10) {
+        document.getElementById("gameover").style.display = 'block';
+        document.querySelector('.overlay').style.display = 'block';
+        document.getElementsByClassName('panel').style.display = 'none';
+    }
+    if(level === 6 && lives > 0)  {
+         document.getElementById("youwin").style.display = 'block';
+         document.querySelector('.overlay').style.display = 'block';
+         document.getElementsByClassName('panel').style.display = 'none';
+    }
+}
+
+function reload(){
+    location.reload();
+}
+
+updateStatus();
+
+
+
+var Enemy = function() {
     this.sprite = 'images/enemy-bug.png';
-    this.x = x;
-    this.y = y;
-    this.speed = Math.floor((Math.random()*200)+150);
+    this.x = 0;
+    this.y = enemyY[Math.floor(Math.random() * 4)];
+    this.speed = Math.floor((Math.random()*200)+level*200);
 };
 
 // Update the enemy's position, required method for game
@@ -36,7 +65,7 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 
 var Player = function(){
-    this.sprite = 'images/char-boy.png';
+    this.sprite = playerImages[level-1]; 
     this.x = 200;
     this.y = 400;
 
@@ -50,38 +79,47 @@ Player.prototype.update = function(dt) {
     'use strict';
 
     var self = this;
-    //if left key is pressed:
-    if(this.pressedKey === 'left' && this.x > 0) { //player isn't on left edge
+    // Make sure the player doesn't go out of the canvas
+    // left key pressed:
+    if(this.direction === 'left' && this.x > 0) {
         this.x = this.x - 100;
     }
 
-    //if right key is pressed:
-    if(this.pressedKey === 'right' && this.x < 400) { //player isn't on right edge
+    //right key pressed:
+    if(this.direction === 'right' && this.x < 400) { 
         this.x = this.x + 100;
     }
 
-    //if up key is pressed:
-    if(this.pressedKey === 'up' && this.y > 0) {
+    //up key pressed:
+    if(this.direction === 'up' && this.y > 0) {
         this.y = this.y - 90;
     }
 
-    //if down key is pressed:
-    if(this.pressedKey === 'down' && this.y < 400) {
+    //down key pressed:
+    if(this.direction === 'down' && this.y < 400) {
         this.y = this.y + 90;
     }
 
-    //this will make player jump only once when key is pressed:
-    this.pressedKey = null;
+    this.direction = null;
 
-    //if player reaches water, position reset:
-    if(this.y < 0) {
-         this.reset();
+    // reaches water
+    if(this.y < 0) { 
+    this.x = 0;
+    this.y = 0;
+    this.reset();
+    score += 250;
+    level += 1;
+    updateStatus();
+     // Each time level up, change character
+    this.sprite = playerImages[level-1];
     }
 
     allEnemies.forEach(function(enemy) {
     if(self.x >= enemy.x - 25 && self.x <= enemy.x + 25) {
         if(self.y >= enemy.y - 25 && self.y <= enemy.y + 25) {
             self.reset();
+            lives -= 1;
+            updateStatus();
             }
         }
     });
@@ -95,7 +133,7 @@ Player.prototype.render = function() {
 //handleInput() method for player:
 Player.prototype.handleInput = function(e) {
     'use strict';
-    this.pressedKey = e;
+    this.direction = e;
 };
 
 //Reset player to beginning position
@@ -106,19 +144,16 @@ Player.prototype.reset = function() {
 };
 
 
-// Instantiation of enemies and player objects:
-var allEnemies = []; //creates an array of Enemies
+var enemy1 = new Enemy();
+var enemy2 = new Enemy();
+var enemy3 = new Enemy();
+var enemy4 = new Enemy();
+var enemy5 = new Enemy();
 
-//this function will DISPLAY Enemies:
-(function displayEnemies() {
-    'use strict';
-    allEnemies.push(new Enemy(0, 50));
-    allEnemies.push(new Enemy(0, 140));
-    allEnemies.push(new Enemy(0, 230));
-}());
-
+var allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5]; 
 
 var player = new Player();
+
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.

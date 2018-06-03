@@ -154,6 +154,11 @@ var Engine = (function(global) {
         });
 
         player.render();
+
+        ctx.font = "20px Montserrat";
+        ctx.fillStyle = 'white';
+        ctx.fillText("Level "+level,10,20);
+        ctx.fillText("Score "+score,390,20);
     }
 
     /* This function does nothing but it could have been a good place to
@@ -173,7 +178,12 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/char-boy.png',
+        'images/char-cat-girl.png',
+        'images/char-horn-girl.png',
+        'images/char-pink-girl.png',
+        'images/char-princess-girl.png',
+        'images/Heart.png',
     ]);
     Resources.onReady(init);
 
