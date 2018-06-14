@@ -1,5 +1,5 @@
 # Feedreader Project
-![Feedreader](https://i.imgur.com/lc8WFpa.jpg)
+![Feedreader](https://i.imgur.com/a95taj8.png)
 ## Table of Contents
 
 * [Project Purpose](#project-purpose)
