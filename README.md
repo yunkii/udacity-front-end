@@ -5,4 +5,4 @@ The projects with Front-end Developer Nanodegree at Udacity (Google Scholarship 
 * P02 : [Build a Portfolio Site](https://yunkii.github.io/udacity-front-end/P02/index.html)
 * P03 : [Memory Game](https://yunkii.github.io/udacity-front-end/P03/index.html)
 * P04 : [Classic Arcade Game Clone](https://yunkii.github.io/udacity-front-end/P04/index.html)
-* P05 : [Feedreader](https://yunkii.github.io/udacity-front-end/P05/index.html)
+* P05 : [Feedreader Testing](https://yunkii.github.io/udacity-front-end/P05/index.html)
