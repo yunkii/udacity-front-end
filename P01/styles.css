@@ -13,7 +13,7 @@ https://davidwalsh.name/css-flip
 
 body {
 	/*background-color: #1abc9c;*/
-	background-color: #eee;
+    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
 	font-family: georgia;
 }
 
@@ -22,6 +22,7 @@ body {
 	perspective: 1500px;
 	width:340px;
   	margin:20vh auto;
+  	height:auto;
 }
 
 .container:hover .card{
@@ -60,7 +61,7 @@ body {
   	z-index: 2;
 	transform: rotateY(0deg);  
   	background: repeating-linear-gradient(
-  	45deg,  #2ecc71,  #2ecc71 20px,  #fff 20px,  #fff 40px);
+  	45deg,  #B2D5FB,  #B2D5FB 20px,  #fff 20px,  #fff 40px);
   	text-align:center; 
 }
 
@@ -69,12 +70,12 @@ body {
 }
 
 h3 {
-	font-size:1.5em;text-align: center;
+	font-size:1.5em;margin:15px;text-align: center;
 }
 
 img {
 	margin-bottom:10px;
-	border-radius: 20px
+	border-radius: 10px
 }
 
 span {
@@ -84,8 +85,8 @@ span {
 .description {
 	border:1px solid #1abc9c;
 	padding:0 10px;
-	border-radius: 20px;
-	margin-bottom: 10px
+	border-radius: 10px;
+	margin: 10px 0;
 
 }
 
