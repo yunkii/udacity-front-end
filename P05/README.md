@@ -3,6 +3,7 @@
 ## Table of Contents
 
 * [Project Purpose](#project-purpose)
+* [How To Run the Project](#how-to-run-the-project)
 * [Dependencies](#dependencies)
 * [Credit](#credit)
 
@@ -12,6 +13,10 @@ Feedreader is a web-based application that reads RSS feeds, including [Jasmine](
 
 The purpose of this project is to practice a standard of development known as "test-driven development", to learn writing effective tests. It requires analyzing multiple aspects of an application including the HTML, CSS and JavaScript.
 
+## How To Run the Project
+
+You can run it online [here](https://yunkii.github.io/udacity-front-end/P05/index.html).
+or you can clone it to your machine and open `index.html`
 
 ## Dependencies
 
