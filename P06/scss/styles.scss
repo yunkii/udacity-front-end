@@ -1,15 +1,20 @@
 @charset "utf-8";
 /* CSS Document */
 
-
+// #F33B6D
+// #F2524D
 // Variables
-$maincolor: #eb2f06;
-$subcolor: #c0392b;
+// $maincolor: #eb2f06;
+$maincolor:linear-gradient(160deg, #F33B6D 0%, #F2524D 100%);
+
+$subcolor: #F14B5D;
 $bgcolor:#fdfdfd;
 
+// @import url('https://fonts.googleapis.com/css?family=Bevan');
+@import url('https://fonts.googleapis.com/css?family=Bevan|Open+Sans');
 
 body,td,th,p{
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: 'Open Sans', sans-serif;
 	font-size: 10pt;
 	color: #333;
 	line-height: 1.4;
@@ -20,7 +25,7 @@ body {
 	position:relative;
 }
 ul, li {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: 'Open Sans', sans-serif;
 	font-size: 10pt;
 	color: #333333;
 }
@@ -60,9 +65,9 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 /* ====================== Navigation ====================== */
 nav {
   width: 100%;
-  background-color: $maincolor;
+  background: $maincolor;
   text-align:center;
-  padding:10px;
+  padding:20px 0 ;
 }
 nav h1 {
   margin: auto;
@@ -73,44 +78,44 @@ nav h1 a {
   font-weight: 200;
   letter-spacing: 5px;
   text-transform: uppercase;
-
+  font-family: 'Bevan', cursive;
 
   @media only screen and (max-width: 800px) {
-  font-size:1.3rem;
+  font-size:1.6rem;
   }
 }
 #breadcrumb {
-    padding: 10px 40px 16px;
+    text-align:center;
+    padding:15px;
     list-style: none;
-    background-color: $subcolor;
+    background:white;
     font-size: 17px;
     margin: 0;
-    width: 100%;
-    height:20px;
+      box-shadow: 10px 10px 5px #eee;
 }
 
 /* Display list items side by side */
 #breadcrumb li {
     display: inline;
+    color: #555;
 }
 
 /* Add a slash symbol (/) before/behind each list item */
 #breadcrumb li+li:before {
     padding: 8px;
-    color: black;
     content: "/\00a0";
-    color:#eee;
+    
 }
 
 /* Add a color to all links inside the list */
 #breadcrumb li a {
-    color: #fff;
+    color: black;
     text-decoration: none;
 }
 
 /* Add a color on mouse-over */
 #breadcrumb li a:hover {
-    color: #fff;
+    color: black;
     text-decoration: underline;
 }
 /* ====================== Map ====================== */
@@ -122,7 +127,7 @@ nav h1 a {
 /* ====================== Restaurant Filtering ====================== */
 .filter-options {
   width: 100%;
-  background-color: $subcolor;
+  background: white;
   align-items: center;
   text-align:center;
 }
@@ -134,10 +139,11 @@ nav h1 a {
   margin: 0 20px;
 }
 .filter-options select {
-  background-color: white;
+  background:#eee;
   border: 1px solid #fff;
   font-family: Arial,sans-serif;
   font-size: 11pt;
+  // color:white;
   height: 35px;
   letter-spacing: 0;
   margin: 10px;
@@ -161,9 +167,15 @@ nav h1 a {
   margin: 15px;
   // min-height: 380px;
   text-align: left;
-  width: 400px;
+  width: 500px;
   display:inline-block;
   text-align:center;
+
+  @media only screen and (max-width: 1000px) {
+  max-width:100%;
+  min-width:90%;
+  margin: 15px 0 ;
+  }
 }
 #restaurants-list .restaurant-img {
   background-color: #ccc;
@@ -240,8 +252,8 @@ nav h1 a {
 
 #restaurant-name {
   color: $maincolor;
-  font-family: Arial,sans-serif;
-  font-size: 20pt;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 3em;
   font-weight: 200;
   letter-spacing: 0;
   text-transform: uppercase;
@@ -258,7 +270,7 @@ nav h1 a {
   text-align:center;
 }
 #restaurant-cuisine {
-  background-color: orange;
+  background-color: $subcolor;
   color: #fff;
   padding:5px;
   margin:20px auto;
@@ -284,12 +296,15 @@ nav h1 a {
   margin-bottom:30px;
 }
 #reviews-container h2 {
-  color: #f58500;
+  color: $maincolor;
+  text-transform:uppercase;
   font-size: 24pt;
   font-weight: 300;
   letter-spacing: -1px;
   padding-bottom: 1pt;
   text-align:center;
+  // font-family: 'Bevan', cursive;
+  font-family: 'Open Sans', sans-serif;
 }
 #reviews-list {
   max-width:800px;
