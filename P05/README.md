@@ -2,6 +2,7 @@
 ![Feedreader Testing](https://i.imgur.com/zScsddE.png)
 ## Table of Contents
 
+
 * [Project Purpose](#project-purpose)
 * [How To Run the Project](#how-to-run-the-project)
 * [Dependencies](#dependencies)
