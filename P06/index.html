@@ -9,12 +9,15 @@
 
 <body>
   <header>
+    <a href="#maincontent" class="skip-link">Skip to main content</a>
     <nav>
       <h1><a href="/">Eat & Drink</a></h1>
     </nav>
   </header>
-
-  <main id="maincontent">
+    <section id="map-container">
+      <div id="map"></div>
+    </section>
+  <main id="maincontent" tabindex="-1">
     <section>
       <div class="filter-options">
         <!-- <h2>Filter Results</h2> -->
@@ -25,11 +28,6 @@
           <option value="all">All Cuisines</option>
         </select>
       </div>
-
-    <section id="map-container">
-      <div id="map"></div>
-    </section>
-
       <ul id="restaurants-list"></ul>
     </section>
   </main>
