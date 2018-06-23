@@ -1,4 +1,4 @@
-# Feedreader Project
+# Feedreader Testing Project
 ![Feedreader Testing](https://i.imgur.com/zScsddE.png)
 ## Table of Contents
 

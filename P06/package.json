@@ -1,0 +1,14 @@
+{
+  "name": "p06",
+  "version": "1.0.0",
+  "description": "restaurant review app for udacity",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp-sass": "^4.0.1"
+  }
+}
