@@ -68,7 +68,7 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 
 nav {
   width: 100%;
-  background: $maincolor;
+  background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
   text-align:center;
   padding:20px 0 ;
 }
@@ -390,7 +390,7 @@ nav h1 a {
 .inside #map-container{
   background: white none repeat scroll 0 0;
   right: 0;
-  top: 120px;
+  top: 140px;
   height:250px;
   width: 100%;
   z-index:9999999;
@@ -402,6 +402,10 @@ nav h1 a {
 
 #restaurant-container {
   margin-top:370px;
+}
+
+#restaurant-name {
+  margin-top:40px;
 }
 
 }
