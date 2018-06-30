@@ -8,7 +8,7 @@ class DBHelper{
    */
   static fetchRestaurants(callback) {
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', 'https://yunkii.github.io/fend/P06/data/restaurants.json');
+    xhr.open('GET', 'https://yunkii.github.io/udacity-front-end/P06/data/restaurants.json');
     xhr.onload = () => {
       if (xhr.status === 200) { // Got a success response from server!
         const json = JSON.parse(xhr.responseText);
@@ -134,14 +134,14 @@ class DBHelper{
    * Restaurant page URL.
    */
   static urlForRestaurant(restaurant) {
-    return (`https://yunkii.github.io/fend/P06/restaurant.html?id=${restaurant.id}`);
+    return (`https://yunkii.github.io/udacity-front-end/P06/restaurant.html?id=${restaurant.id}`);
   }
 
   /**
    * Restaurant image URL.
    */
   static imageUrlForRestaurant(restaurant) {
-    return (`https://yunkii.github.io/fend/P06/img/${restaurant.photograph}`);
+    return (`https://yunkii.github.io/udacity-front-end/P06/img/${restaurant.photograph}`);
   }
 
   /**
