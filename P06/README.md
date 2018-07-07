@@ -30,4 +30,4 @@ This project is using [Google Map API](https://cloud.google.com/maps-platform/) 
 
 ## Credit
 
-Pre-existing application by Udacity : @forbiddenvoid @richardkalehoff @asparr, complete by @yunkii 
+Pre-existing code by Udacity, completed by @yunkii 
