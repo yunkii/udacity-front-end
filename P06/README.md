@@ -1,28 +1,29 @@
-# Mobile Web Specialist Certification Course
----
-#### _Three Stage Course Material Project - Restaurant Reviews_
+# Restaurant Reviews App Project
 
-## Project Overview: Stage 1
+## Table of Contents
 
-For the **Restaurant Reviews** projects, you will incrementally convert a static webpage to a mobile-ready web application. In **Stage One**, you will take a static design that lacks accessibility and convert the design to be responsive on different sized displays and accessible for screen reader use. You will also add a service worker to begin the process of creating a seamless offline experience for your users.
+* [Project Purpose](#project-purpose)
+* [How To Run the Project](#how-to-run-the-project)
+* [Dependencies](#dependencies)
+* [Credit](#credit)
 
-### Specification
+## Project Purpose:
+This project is created for Front-end Developer Nanodegree at Udacity (Google Scholarship Program) :rocket: :metal:
+It's also a project of Mobile Web Specialist Certification Course.
 
-You have been provided the code for a restaurant reviews website. The code has a lot of issues. It’s barely usable on a desktop browser, much less a mobile device. It also doesn’t include any standard accessibility features, and it doesn’t work offline at all. Your job is to update the code to resolve these issues while still maintaining the included functionality. 
+Restaurant Reviews App is a mobile-ready web application, which is responsive on different sized displays and accessible for screen reader use. A service worker is added to create a seamless offline experience for the users.
 
-### What do I do from here?
+It has features in three areas: responsive design, accessibility and offline use (service worker)
 
-1. In this folder, start up a simple HTTP server to serve up the site files on your local computer. Python has some simple tools to do this, and you don't even need to know Python. For most people, it's already installed on your computer. 
+## How To Run the Project
 
-In a terminal, check the version of Python you have: `python -V`. If you have Python 2.x, spin up the server with `python -m SimpleHTTPServer 8000` (or some other port, if port 8000 is already in use.) For Python 3.x, you can use `python3 -m http.server 8000`. If you don't have Python installed, navigate to Python's [website](https://www.python.org/) to download and install the software.
+You can visit it online for a [quick preview](https://yunkii.github.io/udacity-front-end/P06/index.html) 
 
-2. With your server running, visit the site: `http://localhost:8000`, and look around for a bit to see what the current experience looks like.
-3. Explore the provided code, and make start making a plan to implement the required features in three areas: responsive design, accessibility and offline use.
-4. Write code to implement the updates to get this site on its way to being a mobile-ready website.
+Or you can clone this project to your machine, and start a simple HTTP server by running this command : `python -m SimpleHTTPServer 8001` or `python3 -m http.server 8001` if you're using python 3.
 
-### Note about ES6
-
-Most of the code in this project has been written to the ES6 JavaScript specification for compatibility with modern web browsers and future proofing JavaScript code. As much as possible, try to maintain use of ES6 in any additional JavaScript you write. 
-
+And then go to `http://localhost:8001` 
 
 
+## Dependencies
+
+This project is using [Google Map API](https://cloud.google.com/maps-platform/) and [Python](https://www.python.org/).
