@@ -1,10 +1,11 @@
 # Restaurant Reviews App Project
-
+![Restaurant Reviews App](https://i.imgur.com/HRk4485.png)
 ## Table of Contents
 
 * [Project Purpose](#project-purpose)
 * [How To Run the Project](#how-to-run-the-project)
 * [Dependencies](#dependencies)
+* [Credit](#credit)
 
 ## Project Purpose:
 This project is created for Front-end Developer Nanodegree at Udacity (Google Scholarship Program) :rocket: :metal:
@@ -26,3 +27,7 @@ And then go to `http://localhost:8001`
 ## Dependencies
 
 This project is using [Google Map API](https://cloud.google.com/maps-platform/) and [Python](https://www.python.org/).
+
+## Credit
+
+Pre-existing application by Udacity : @forbiddenvoid @richardkalehoff @asparr, complete by @yunkii 
