@@ -5,7 +5,6 @@
 * [Project Purpose](#project-purpose)
 * [How To Run the Project](#how-to-run-the-project)
 * [Dependencies](#dependencies)
-* [Credit](#credit)
 
 ## Project Purpose:
 This project is created for Front-end Developer Nanodegree at Udacity (Google Scholarship Program) :rocket: :metal:
