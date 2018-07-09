@@ -17,9 +17,7 @@ It has features in three areas: responsive design, accessibility and offline use
 
 ## How To Run the Project
 
-You can visit it online for a [quick preview](https://yunkii.github.io/udacity-front-end/P06/index.html) 
-
-Or you can clone this project to your machine, and start a simple HTTP server by running this command : `python -m SimpleHTTPServer 8001` or `python3 -m http.server 8001` if you're using python 3.
+You can clone this project to your machine, and start a simple HTTP server by running this command : `python -m SimpleHTTPServer 8001` or `python3 -m http.server 8001` if you're using python 3.
 
 And then go to `http://localhost:8001` 
 
