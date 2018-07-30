@@ -11,6 +11,11 @@ class SearchBooks extends React.Component {
 		currentBooks:PropTypes.array.isRequired,
 	}
 
+	state = {
+
+
+		
+	}
 
 
 
