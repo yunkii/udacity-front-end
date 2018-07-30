@@ -4,10 +4,11 @@ import BookItem from './BookItem'
 
 class Bookshelf extends Component {
 
-
-
-
-
+	render() {
+		return(
+			<div></div>
+		)
+	}
 
 }
 
