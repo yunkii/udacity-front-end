@@ -1,25 +1,25 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {PropTypes} from 'prop-types'
 
-class BookItem extends Component {
-
+class BookItem extends React.Component {
   static propTypes = {
-    bookItem: PropTypes.object.isRequired,
-    changeStatus: PropTypes.func.isRequired
+    book: PropTypes.object.isRequired,
+    move_to_shelve: PropTypes.func.isRequired,
   }
 
-  changeStatus = (c) => {
-    this.props.changeStatus(c.target.value)
+  moveTo = (e) => {
+    this.props.move_to_shelve(e.target.value)
   }
 
 render() {
-	return (
-      <li>
+    const book = this.props.book
+    return (
+      <li key={book.id}>
         <div className="book">
           <div className="book-top">
-            <div className="book-cover" style={{backgroundImage: `url("${this.props.bookItem.imageLinks.thumbnail}")`}}></div>
+            <div className="book-cover" style={{backgroundImage: `url("${book.imageLinks.thumbnail}")`}}></div>
             <div className="book-shelf-changer">
-              <select onChange={this.changeStatus} value={this.props.bookItem.shelf}>
+              <select onChange={this.moveTo} defaultValue={book.shelf}>
                 <option value="none" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>
@@ -28,14 +28,13 @@ render() {
               </select>
             </div>
           </div>
-          <div className="book-title">{this.props.bookItem.title}</div>
-          <div className="book-authors">{this.props.bookItem.authors}</div>
+          <div className="book-title">{book.title}</div>
+          <div className="book-authors">{book.authors}</div>
         </div>
       </li>
 	)
 }
 
 }
-
 
 export default BookItem;
