@@ -1,5 +1,5 @@
 # MyReads Project
-![MyReads](https://i.imgur.com/eUjk1NY.png)
+![MyReads](https://i.imgur.com/mFbmGOr.png)
 ## Table of Contents
 
 * [Project Purpose](#project-purpose)
