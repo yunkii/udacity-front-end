@@ -13,7 +13,7 @@ The goal of this project is to show understanding of React Fundamentals course.
 
 ## How To Run the Project
 * Clone the project to your machine
-* CD into the folder and run `npm install and `npm start`
+* CD into the folder and run `npm install` and `npm start`
 
 
 ## Dependencies
