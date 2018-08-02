@@ -1,5 +1,5 @@
-# MyReads Project
-![MyReads](https://i.imgur.com/YGlys1M.png)
+# MyReads : A React project
+![MyReads](https://i.imgur.com/4aHsPnh.png)
 ## Table of Contents
 
 * [Project Purpose](#project-purpose)
