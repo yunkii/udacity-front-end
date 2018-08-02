@@ -1,29 +1,9 @@
-# MyReads Project
-![MyReads](https://i.imgur.com/mFbmGOr.png)
-## Table of Contents
-
-* [Project Purpose](#project-purpose)
-* [How To Run the Project](#how-to-run-the-project)
-* [Dependencies](#dependencies)
-* [Credit](#credit)
-
-## Project Purpose:
-
-This is a project for Udacity's React Fundamentals course.
-The goal of this project is to demonstre the understanding of React
-including components, props, routers, and the use of existed API.
-
-## How To Run the Project
-
-* Clone the project to your machine
-* CD into the folder and run `npm install` and `npm start`
-
-## Dependencies
-
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app) by Facebook. You can find more information on how to perform common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
-
-This project is also using [CSS Spinners](https://github.com/jlong/css-spinners), a css loader framework.
-
-## Credit
-
-Pre-existing code and BookAPI provided by Udacity, completed by @yunkii.
+# udacity-front-end
+The projects with Front-end Developer Nanodegree at Udacity (Google Scholarship Program) :rocket: :metal:
+* P01 : [Animal Trading Card](https://yunkii.github.io/udacity-front-end/P01/cards.html)
+* P02 : [Build a Portfolio Site](https://yunkii.github.io/udacity-front-end/P02/index.html)
+* P03 : [Memory Game](https://yunkii.github.io/udacity-front-end/P03/index.html)
+* P04 : [Classic Arcade Game Clone](https://yunkii.github.io/udacity-front-end/P04/index.html)
+* P05 : [Feedreader Testing](https://yunkii.github.io/udacity-front-end/P05/index.html)
+* P06 : Restaurant Review App
+* P07 : MyReads
