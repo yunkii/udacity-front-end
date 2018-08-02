@@ -1,5 +1,5 @@
 # MyReads Project
-![MyReads](https://i.imgur.com/mFbmGOr.png)
+![MyReads](https://i.imgur.com/YGlys1M.png)
 ## Table of Contents
 
 * [Project Purpose](#project-purpose)
@@ -10,7 +10,7 @@
 ## Project Purpose:
 
 This is a project for Udacity's React Fundamentals course.
-The goal of this project is to demonstre the understanding of React
+The goal of this project is to demonstrate the understanding of React
 including components, props, routers, and the use of existed API.
 
 ## How To Run the Project
