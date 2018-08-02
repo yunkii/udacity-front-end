@@ -195,3 +195,13 @@ body, .app {
   margin:auto;
   text-align: center;
 }
+
+.search-terms li {
+  display:inline-block;
+  font-size:13px;
+  padding:5px;
+  border:1px solid #aa7ecd;
+  color:#aa7ecd;
+  margin:5px;
+  border-radius:5px;
+}

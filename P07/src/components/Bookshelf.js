@@ -9,16 +9,14 @@ class Bookshelf extends React.Component {
     console.log('Bookshelf loaded');
   }
 
-
   static propTypes = {
     books: PropTypes.array.isRequired,
     title: PropTypes.string.isRequired,
-    moveToShelve: PropTypes.func.isRequired,
+    moveTo: PropTypes.func.isRequired,
   }
 
 	render() {
     const books = this.props.books
-    console.log(this.props)
 		return(
       <div>
         <div className="bookshelf">
@@ -28,11 +26,11 @@ class Bookshelf extends React.Component {
           </div>
           <div className="bookshelf-books">
             <ol className="books-grid">
-              {books.map((book, index) => (
+              {books.map((book) => (
                   <BookItem 
                     book={book} 
-                    key={index} 
-                    move_to_shelve={(shelf) => {this.props.moveToShelve(book, shelf)}}
+                    key={book.id} 
+                    moveTo={(shelf) => {this.props.moveTo(book, shelf)}}
                   />
                 ))}
             </ol>

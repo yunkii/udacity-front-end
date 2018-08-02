@@ -2,6 +2,7 @@ import React from 'react'
 import {PropTypes} from 'prop-types'
 import * as BooksAPI from '.././BooksAPI'
 import BookItem from './BookItem'
+import SearchTerms from './SearchTerms'
 import {Link} from 'react-router-dom'
 
 class SearchBooks extends React.Component {
@@ -11,82 +12,90 @@ class SearchBooks extends React.Component {
   }
 
 	static propTypes = {
+      books: PropTypes.array.isRequired,
 	    moveTo: PropTypes.func.isRequired,
-	    BooksOnShelves: PropTypes.array.isRequired,
 	}
 
 	state = {
-		allBooks:[],
+		results:[],
 		query: '',
 	}
 
-
-  updateQuery = (event) => {
-    let val = event.target.value
+  updateQuery = (e) => {
+    let word = e.target.value.trim().replace(/[0-9&#=+();$~@_%.'":*?<>{}]/g, ''); // avoid spaces and special characters. 
     this.setState(() => {
-      return {query: val}
+      return {query: word}
     })
-    this.searchBooks(val)
+    this.searchBooks(word)
   }
 
 
-  searchBooks = (val) => {
-    if (val.length !== 0) {
-      BooksAPI.search(val, 10).then((books) => {
-        if (books.length > 0) {
-          books = books.filter((book) => (book.imageLinks))
-          books = this.changeShelf(books)
+  searchBooks = (word) => {
+    const maxResults = 20;
+    if (word) {
+      BooksAPI.search(word, maxResults).then((books) => {
+        if(books.length > 0) {
           this.setState(() => {
-            return {allBooks: books}
+            return {results: this.setShelf(books)};
           })
         }
       })
     } else {
-      this.setState({
-        allBooks: [], 
-        query: ''
-      })
+      this.clearSearch()
     }
   }
 
-  changeShelf = (books) => {
-    for (let book of books) {
-      book.shelf = "none"
-    }
 
-    for (let book of books) {
-      for (let b of this.props.BooksOnShelves) {
-        if (b.id === book.id) {
-          book.shelf = b.shelf
-        }
-      }
-    }
+  clearSearch = () => {
+    this.setState({
+      query: '',
+      results: []
+    })
+  }
+
+  // Set Shelves for books, 
+  setShelf = (books) => {
+    books.map(book => {
+      book.shelf = 'none' // set default shelf as 'None'
+      this.props.books.forEach(b => {
+        b.id === book.id && (book.shelf = b.shelf)
+      }) //Set current books to correspond shelves
+      return book
+    })
     return books
   }
 
+
 	render() {
+    const query = this.state.query
+    const results = this.state.results
+
 		return (
 
     <div className="search-books">
       <div className="search-books-bar">
         <Link to="/" className="close-search">Close</Link>
         <div className="search-books-input-wrapper">
-          <input type="text" placeholder="Search by title or author" value={this.state.query} onChange={this.updateQuery}/>
+          <input 
+           type="text" 
+           placeholder="Search by title or author" 
+           value={query} 
+           onChange={this.updateQuery}/>
         </div>
       </div>
       <div className="search-books-results">
-       {this.state.query.length === 0 && <p>Start Searching!</p>}
-       {this.state.query.length > 0 && this.state.allBooks.length !== 0 && <p>Found {this.state.allBooks.length} Books</p>}
+       {query.length === 0 && <SearchTerms />}
+       {query.length > 0 && results.length !== 0 && <p>Found {results.length} Books </p>}
        <div className="loader">
-       {this.state.query.length > 0 && this.state.allBooks.length === 0 && <div className="three-quarters-loader">Loading...</div>}
+       {query.length > 0 && results.length === 0 && <div className="three-quarters-loader">Loading...</div>}
        </div>
        
         <ol className="books-grid">
-          {this.state.query.length > 0 && this.state.allBooks.map((book, index) => (
+          {query.length > 0 && results.map((book, index) => (
             <BookItem
             book={book}
             key={index}
-            move_to_shelve={(shelf) => {
+            moveTo={(shelf) => {
             this.props.moveTo(book, shelf)}}
             />
           ))}

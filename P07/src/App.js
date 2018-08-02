@@ -7,10 +7,14 @@ import SearchBooks from './components/SearchBooks'
 import ListBooks from './components/ListBooks'
 
 class BooksApp extends React.Component {
-  state = {
-    myBooks: [],
-    // showSearchPage: false
-  }
+
+  constructor(){
+    super();
+    this.state = {
+      myBooks: [] //Books currently on the shelve
+    };
+  };
+
 
   getAllBooks = () => {
     BooksAPI.getAll().then((books) => {
@@ -28,13 +32,11 @@ class BooksApp extends React.Component {
 
 
   componentDidMount() {
-    this.getAllBooks();
+    this.getAllBooks()
   }
 
   render() {
-    console.log(this.state);
     return (
-
 
       <div className="app">
         <Route exact path="/" render={() => (
@@ -43,7 +45,7 @@ class BooksApp extends React.Component {
 
         
         <Route path="/search" render={() =>(
-          <SearchBooks BooksOnShelves={this.state.myBooks} moveTo={this.updateAllBooks}/>)
+          <SearchBooks books={this.state.myBooks} moveTo={this.updateAllBooks}/>)
         }/>
       </div>
     )
