@@ -404,6 +404,14 @@
         var marker = new google.maps.Marker({
           position: Paris,
           map: map,
-          title: 'First Marker!'
+          title: 'Notre Dame de Paris'
+        });
+
+        var infowindow = new google.maps.InfoWindow({
+          content: marker.title
+        });
+
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
         });
       }
