@@ -391,6 +391,7 @@
     }
 ]
 
+
       var map;
       var Paris = {lat: 48.8529682, lng: 2.3499021};
       function initMap() {
