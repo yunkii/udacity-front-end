@@ -144,6 +144,14 @@ text-transform: uppercase;
   color:#e74c3c;
 }
 
+.founded-year {
+  background-color: #e74c3c;
+  color:white;
+  border-radius:10px;
+}
+
+
+
 .search-input{
 min-height: 20px; 
 display:block;

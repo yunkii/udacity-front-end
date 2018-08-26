@@ -7,7 +7,6 @@ import {locations, MAP_API_KEY, Paris} from './data/mapData';
 import Map from './Map';
 import './styles/App.css';
 
-
 class App extends React.Component {
 
   // Constructor
@@ -24,7 +23,7 @@ class App extends React.Component {
       allMarkers:[],
       infoWindows:[],
       filteredLocations:[],
-      requestOK: true,
+      mapReady: true,
     }
   }
 
@@ -34,14 +33,11 @@ class App extends React.Component {
 
     if (isScriptLoaded && isScriptLoadSucceed) {
       this.initMap();
-      this.setState({
-        requestOK: true,
-      });
       console.log("Map was loaded successfully");
     }
     else {
       this.setState({
-        requestOK: false
+        mapReady: false
       });
       console.log("Failed to load the map");
     }
@@ -64,10 +60,12 @@ class App extends React.Component {
 
   // Click on the list to show marker on the MAP
 
-  showMarker = (place, target) => {
+  showMarker = (place, event) => {
+
     const clickedMarker = this.state.allMarkers.filter(
       (thisMarker)=> thisMarker.name === place.name)
-      window.google.maps.target.trigger(clickedMarker[0], 'click');
+      window.google.maps.event.trigger(clickedMarker[0], 'click');
+
   }
 
   handleKeyPress = (event) => {
@@ -75,6 +73,7 @@ class App extends React.Component {
       this.showMarker(event)
     }
   }
+
 
   updateAllData = (updatedData) => {
     this.setState({
@@ -90,11 +89,13 @@ class App extends React.Component {
   }
 
   componentDidMount(){
-
+    
     // Fetch Wiki API for description and link
-
+    
     this.state.locations.map((location)=>{
-      return fetchJsonp(`https://en.wikipedia.org/w/api.php?action=opensearch&search=${location.name}`)
+      return fetchJsonp(
+        `https://en.wikipedia.org/w/api.php?action=opensearch&search=${location.name}`
+        )
       .then(response => response.json())
       .then((dataJson) => {
         let description = dataJson[2][0];
@@ -109,7 +110,6 @@ class App extends React.Component {
 
 
   componentDidUpdate(){
-
     let {map, locations} = this.state;
     this.state.filteredLocations = locations
     this.state.allMarkers.forEach(mark => { mark.setMap() });
@@ -140,14 +140,16 @@ class App extends React.Component {
             else return 'https://www.wikipedia.org/'
           })
 
+        let contentString = 
+        `<div class="info-window">
+            <h4>${marker.name}</h4>
+            <p class="founded-year">Founded <strong>${marker.founded}</strong></p>
+            <p>${getWikiDescription}</p>
+            <a href=${getWikiLink} target="_blank">Read Wiki</a>
+         </div>`
+
         let addInfoWindow = new window.google.maps.InfoWindow({
-          content:
-            `<div class="info-window">
-                <h4>${marker.name}</h4>
-                <p><small><em>Founded ${marker.founded}</em></small></p>
-                <p>${getWikiDescription}</p>
-                <a href=${getWikiLink} target="_blank">Read Wiki</a>
-              </div>`
+          content:contentString
         });
 
 
@@ -201,18 +203,22 @@ class App extends React.Component {
             <Map />
             <div className='location-list'>
               <h1>Paris Attractions</h1>
-              <input className='search-input' type='text'
-                tabIndex="-1"
-                placeholder='Enter an attraction'
-                value={this.state.query}
-                onChange={(event)=> this.updateSearchQuery(event.target.value)}/>
+              <input role="Search" 
+                     aria-labelledby="filter"
+                     className='search-input'
+                     type='text'
+                     placeholder='Enter an attraction'
+                     value={this.state.query}
+                     onChange={(e)=> this.updateSearchQuery(e.target.value)}/>
 
-              <ol aria-labelledby="location list" tabIndex="1">
-                {this.state.filteredLocations.map((location, index)=>
-                  <li key={index} 
-                  onKeyPress={this.handleKeyPress.bind(this,location)} 
-                  onClick={this.showMarker.bind(this,location)
-                  }>{location.name}</li>)}
+              <ol aria-labelledby="location list">
+                {this.state.filteredLocations.map((location,id)=>
+                  <li key={id} 
+                      onClick={this.showMarker.bind(this,location)}>
+                      {location.name}
+                  </li>
+                  )
+                }
               </ol>
             </div>
         </div>
