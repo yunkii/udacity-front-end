@@ -1,6 +1,5 @@
 export const MAP_API_KEY = 'AIzaSyCXlhfRe9P_ydt733B94dkIW6Vn84ENdTc';
 export const Paris = { lat: 48.8529682, lng: 2.3499021 };
-
 export const locations = [{
   name: 'Eiffel Tower',
   address: 'Champ de Mars, 5 Avenue Anatole France, 75007 Paris',

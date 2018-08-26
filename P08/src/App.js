@@ -44,9 +44,7 @@ class App extends React.Component {
   }
 
   initMap = () => {
-
   // Init Google Maps
-
     var map = new window.google.maps.Map(document.getElementById('map'),
       {
         styles: this.state.styles,
@@ -59,28 +57,18 @@ class App extends React.Component {
 
 
   // Click on the list to show marker on the MAP
-
   showMarker = (place, event) => {
-
-    const clickedMarker = this.state.allMarkers.filter(
+    let markerClicked = this.state.allMarkers.filter(
       (thisMarker)=> thisMarker.name === place.name)
-      window.google.maps.event.trigger(clickedMarker[0], 'click');
-
+      window.google.maps.event.trigger(markerClicked[0], 'click');
   }
 
-  handleKeyPress = (event) => {
-    if(event.key === 'Enter'){
-      this.showMarker(event)
-    }
-  }
-
-
+  // Fetch Data Update
   updateAllData = (updatedData) => {
     this.setState({
       data:updatedData,
     });
   }
-
 
   updateSearchQuery =(query) => {
     this.setState({
@@ -88,19 +76,28 @@ class App extends React.Component {
     });
   }
 
-  componentDidMount(){
-    
-    // Fetch Wiki API for description and link when loaded
+
+
+  componentWillMount(){
+    console.log('Before Fetch');
+    // Fetch Wiki API API with Asynchronous calls
     this.state.locations.map((location)=>{
       return fetchJsonp(
         `https://en.wikipedia.org/w/api.php?action=opensearch&search=${location.name}`
         )
-      .then(response => response.json())
+      .then(response => {
+        if(!response.ok) {
+          throw Error ('Response not OK')
+        }
+        return response.json();
+      })
+      .then(console.log('Fetch WikiData OK'))
       .then((dataJson) => {
         let description = dataJson[2][0];
         let link = dataJson[3][0];
         let updatedData = [...this.state.data,[dataJson, description, link ]]
         this.updateAllData(updatedData)
+        console.log(updatedData)
       })
       .catch(error => console.error(error)      
       )
@@ -117,7 +114,7 @@ class App extends React.Component {
 
     this.state.filteredLocations.map((marker,index)=> {
         let markerImage = new window.google.maps.MarkerImage("https://i.imgur.com/lI5qWCV.png");
-        let addMarker = new window.google.maps.Marker({
+        let markerItem = new window.google.maps.Marker({
           map: map,
           position: marker.location,
           name : marker.name,
@@ -129,7 +126,7 @@ class App extends React.Component {
           data.filter((info)=>marker.name === info[0][0]).map(i=>
           {if (i[1]) 
             return i[1]
-            else return 'No content found'
+            else return 'No content was found'
           })
 
         let getWikiLink = 
@@ -141,7 +138,7 @@ class App extends React.Component {
 
         let contentString = 
         `<div class="info-window">
-                <h4>${marker.name}</h4>
+            <h4>${marker.name}</h4>
             <p class="founded-year">Founded <strong>${marker.founded}</strong></p>
             <p>${getWikiDescription}</p>
             <a href=${getWikiLink} target="_blank">Read Wiki</a>
@@ -152,76 +149,78 @@ class App extends React.Component {
         });
 
         //Add the marker to the list of marker
-        this.state.allMarkers.push(addMarker);
+        this.state.allMarkers.push(markerItem);
         this.state.infoWindows.push(addInfoWindow);
 
         const infoWindows = this.state.infoWindows;
-
-        addMarker.addListener('click', function() {
+        markerItem.addListener('click', function() {
             infoWindows.map(
-              info => { 
-                info.close() 
-            });
+              window => { 
+                window.close()
+        });
 
-        addInfoWindow.open(map, addMarker);
-          if (addMarker.getAnimation() !== null) {
-            addMarker.setAnimation(null);
-          } else {
-        addMarker.setAnimation(window.google.maps.Animation.BOUNCE);
-
-        setTimeout(() => {
-            addMarker.setAnimation(null);
-          }, 1000)
-        }
-    })
+      // Make Marker Jumps
+        addInfoWindow.open(map, markerItem);
+          if (!markerItem.getAnimation()) {
+          // If marker is not jumping, make it jump
+          markerItem.setAnimation(window.google.maps.Animation.BOUNCE);
+          // Make marker stop bouncing after 2s
+          setTimeout(() => {
+              markerItem.setAnimation(null);
+            }, 2000)
+          }
+        })
 
       // Marker Bounds
       const bounds = new window.google.maps.LatLngBounds();
- 
       this.state.allMarkers.forEach((marker)=>
-        bounds.extend(marker.position))
+        bounds.extend(marker.position)
+      )
         map.fitBounds(bounds)
     })
   }
 
 
  render() {
-  let {locations, query} = this.state;
-    if (query){
-      const match = new RegExp(escapeRegExp(query),'i')
-      this.state.filteredLocations = locations.filter((location)=> match.test(location.name))
-    }
-    else{
-      this.state.filteredLocations = locations;
-    }
-    return (
+      let {locations, query} = this.state;
+      if (query){
+        const match = new RegExp(escapeRegExp(query),'i')
+        this.state.filteredLocations = locations.filter((location)=> match.test(location.name))
+      }
+      else{
+        this.state.filteredLocations = locations;
+      }
+      if(!this.state.data == null) 
+        return <p>Failed to fetch wiki data!</p>
 
-      (
-        <div>
-            <Map />
-            <div className='location-list'>
-              <h1>Paris Attractions</h1>
-              <input role="Search" 
-                     aria-labelledby="filter"
-                     className='search-input'
-                     type='text'
-                     placeholder='Enter an attraction'
-                     value={this.state.query}
-                     onChange={(e)=> this.updateSearchQuery(e.target.value)}/>
+      else{
+      return (
+        (
+          <div>
+              <Map />
+              <div className='location-list'>
+                <h1>Paris Attractions</h1>
+                <input role="Search" 
+                       aria-labelledby="filter"
+                       className='search-input'
+                       type='text'
+                       placeholder='Enter an attraction'
+                       value={this.state.query}
+                       onChange={(e)=> this.updateSearchQuery(e.target.value)}/>
 
-              <ol aria-labelledby="location list">
-                {this.state.filteredLocations.map((location,id)=>
-                  <li key={id} 
-                      onClick={this.showMarker.bind(this,location)}>
-                      {location.name}
-                  </li>
-                  )
-                }
-              </ol>
-            </div>
-        </div>
-      )
-    )
+                <ol aria-labelledby="location list">
+                  {this.state.filteredLocations.map((location,id)=>
+                    <li key={id} 
+                        onClick={this.showMarker.bind(this,location)}>
+                        {location.name}
+                    </li>
+                    )
+                  }
+                </ol>
+              </div>
+          </div>
+        )
+      )}
     
     }
   }
