@@ -5,6 +5,7 @@ import fetchJsonp from 'fetch-jsonp';
 import mapStyle from './data/mapStyle';
 import {locations, MAP_API_KEY, Paris} from './data/mapData';
 import Map from './Map';
+import Search from './Search'
 import './styles/App.css';
 
 class App extends React.Component {
@@ -63,7 +64,7 @@ class App extends React.Component {
       window.google.maps.event.trigger(markerClicked[0], 'click');
   }
 
-  // Fetch Data Update
+  // Update Wiki Data
   updateAllData = (updatedData) => {
     this.setState({
       data:updatedData,
@@ -75,7 +76,6 @@ class App extends React.Component {
       query: query.trim()
     });
   }
-
 
 
   componentWillMount(){
@@ -92,10 +92,10 @@ class App extends React.Component {
         return response.json();
       })
       .then(console.log('Fetch WikiData OK'))
-      .then((dataJson) => {
-        let description = dataJson[2][0];
-        let link = dataJson[3][0];
-        let updatedData = [...this.state.data,[dataJson, description, link ]]
+      .then((data) => {
+        let description = data[2][0];
+        let link = data[3][0];
+        let updatedData = [...this.state.data,[data, description, link ]]
         this.updateAllData(updatedData)
         console.log(updatedData)
       })
@@ -136,7 +136,7 @@ class App extends React.Component {
             else return 'https://www.wikipedia.org/'
           })
 
-        let contentString = 
+        let infoContent = 
         `<div class="info-window">
             <h4>${marker.name}</h4>
             <p class="founded-year">Founded <strong>${marker.founded}</strong></p>
@@ -145,7 +145,7 @@ class App extends React.Component {
          </div>`
 
         let addInfoWindow = new window.google.maps.InfoWindow({
-          content:contentString
+          content:infoContent
         });
 
         //Add the marker to the list of marker
@@ -171,7 +171,7 @@ class App extends React.Component {
           }
         })
 
-      // Marker Bounds
+      // Marker Bounds : Google maps API V3 method fitBounds()
       const bounds = new window.google.maps.LatLngBounds();
       this.state.allMarkers.forEach((marker)=>
         bounds.extend(marker.position)
@@ -181,7 +181,8 @@ class App extends React.Component {
   }
 
 
- render() {
+ render() 
+ {
       let {locations, query} = this.state;
       if (query){
         const match = new RegExp(escapeRegExp(query),'i')
@@ -191,7 +192,7 @@ class App extends React.Component {
         this.state.filteredLocations = locations;
       }
       if(!this.state.data == null) 
-        return <p>Failed to fetch wiki data!</p>
+        return <h1>Failed to fetch wiki data! Please try again</h1>
 
       else{
       return (
@@ -201,22 +202,22 @@ class App extends React.Component {
               <div className='location-list'>
                 <h1>Paris Attractions</h1>
                 <input role="Search" 
-                       aria-labelledby="filter"
+                       aria-label="search location" 
                        className='search-input'
                        type='text'
                        placeholder='Enter an attraction'
                        value={this.state.query}
                        onChange={(e)=> this.updateSearchQuery(e.target.value)}/>
 
-                <ol aria-labelledby="location list">
-                  {this.state.filteredLocations.map((location,id)=>
-                    <li key={id} 
-                        onClick={this.showMarker.bind(this,location)}>
-                        {location.name}
-                    </li>
-                    )
-                  }
-                </ol>
+                  <ol aria-labelledby="location list">
+                    {this.state.filteredLocations.map((location,id)=>
+                      <li key={id} 
+                          onClick={this.showMarker.bind(this,location)}>
+                          {location.name}
+                      </li>
+                      )
+                    }
+                  </ol>
               </div>
           </div>
         )
