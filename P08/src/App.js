@@ -90,8 +90,7 @@ class App extends React.Component {
 
   componentDidMount(){
     
-    // Fetch Wiki API for description and link
-    
+    // Fetch Wiki API for description and link when loaded
     this.state.locations.map((location)=>{
       return fetchJsonp(
         `https://en.wikipedia.org/w/api.php?action=opensearch&search=${location.name}`
@@ -110,7 +109,7 @@ class App extends React.Component {
 
 
   componentDidUpdate(){
-    let {map, locations} = this.state;
+    let {map, locations, data} = this.state;
     this.state.filteredLocations = locations
     this.state.allMarkers.forEach(mark => { mark.setMap() });
     this.state.allMarkers = [];
@@ -127,14 +126,14 @@ class App extends React.Component {
         });
 
         let getWikiDescription = 
-          this.state.data.filter((info)=>marker.name === info[0][0]).map(i=>
+          data.filter((info)=>marker.name === info[0][0]).map(i=>
           {if (i[1]) 
             return i[1]
             else return 'No content found'
           })
 
         let getWikiLink = 
-          this.state.data.filter((info)=>marker.name === info[0][0]).map(i=>
+          data.filter((info)=>marker.name === info[0][0]).map(i=>
           {if (i[1]) 
             return i[2]
             else return 'https://www.wikipedia.org/'
@@ -142,7 +141,7 @@ class App extends React.Component {
 
         let contentString = 
         `<div class="info-window">
-            <h4>${marker.name}</h4>
+                <h4>${marker.name}</h4>
             <p class="founded-year">Founded <strong>${marker.founded}</strong></p>
             <p>${getWikiDescription}</p>
             <a href=${getWikiLink} target="_blank">Read Wiki</a>
@@ -151,7 +150,6 @@ class App extends React.Component {
         let addInfoWindow = new window.google.maps.InfoWindow({
           content:contentString
         });
-
 
         //Add the marker to the list of marker
         this.state.allMarkers.push(addMarker);
