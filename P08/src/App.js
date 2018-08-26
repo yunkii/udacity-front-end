@@ -5,7 +5,7 @@ import fetchJsonp from 'fetch-jsonp';
 import mapStyle from './data/mapStyle';
 import {locations, MAP_API_KEY, Paris} from './data/mapData';
 import Map from './Map';
-import Search from './Search'
+// import Search from './Search'
 import './styles/App.css';
 
 class App extends React.Component {
