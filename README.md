@@ -7,3 +7,4 @@ The projects with Front-end Developer Nanodegree at Udacity (Google Scholarship 
 * P05 : [Feedreader Testing](https://yunkii.github.io/udacity-front-end/P05/)
 * P06 : [Restaurant Review App](https://github.com/yunkii/udacity-front-end/tree/master/P06)
 * P07 : [MyReads](https://github.com/yunkii/udacity-front-end/tree/master/P07)
+* P08 : [Neighborhood Map](https://github.com/yunkii/udacity-front-end/tree/master/P08)
